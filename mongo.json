@@ -1,0 +1,169 @@
+[
+    {
+      "rutaId": "RT-002",
+      "nombre": "Ruta Natural por el Bosque Encantado",
+      "descripcion": "Exploración guiada por senderos naturales con observación de flora y fauna.",
+      "activo": true,
+      "duracionHoras": 5,
+      "fechaDisponible": ["2025-06-20", "2025-06-27", "2025-07-04"],
+      "precio": {
+        "adulto": 30.0,
+        "niño": 15.0,
+        "moneda": "USD"
+      },
+      "incluye": [
+        "Guía experto en biología",
+        "Binoculares",
+        "Snacks saludables",
+        "Seguro contra accidentes"
+      ],
+      "idiomasDisponibles": ["español", "inglés"],
+      "valoraciones": [
+        {
+          "usuario": "ecoaventurero88",
+          "comentario": "Hermosa experiencia en contacto con la naturaleza.",
+          "puntuacion": 4.8,
+          "fecha": "2025-04-30"
+        }
+      ],
+      "accesibilidad": {
+        "sillaDeRuedas": false,
+        "traduccionEnLenguaDeSeñas": false,
+        "bañosAdaptados": false
+      }
+    },
+    {
+      "rutaId": "RT-003",
+      "nombre": "Tour Gastronómico Tradicional",
+      "descripcion": "Recorrido por los mejores restaurantes y mercados locales.",
+      "activo": true,
+      "duracionHoras": 4,
+      "fechaDisponible": ["2025-06-10", "2025-06-17", "2025-06-24"],
+      "precio": {
+        "adulto": 40.0,
+        "niño": 20.0,
+        "moneda": "USD"
+      },
+      "incluye": [
+        "Degustaciones",
+        "Guía gastronómico",
+        "Bebidas tradicionales",
+        "Recetario digital"
+      ],
+      "idiomasDisponibles": ["español", "inglés", "italiano"],
+      "valoraciones": [
+        {
+          "usuario": "foodie_marta",
+          "comentario": "Delicioso y muy bien organizado.",
+          "puntuacion": 5.0,
+          "fecha": "2025-04-05"
+        }
+      ],
+      "accesibilidad": {
+        "sillaDeRuedas": true,
+        "traduccionEnLenguaDeSeñas": true,
+        "bañosAdaptados": true
+      }
+    },
+    {
+      "rutaId": "RT-004",
+      "nombre": "Ruta de Leyendas Nocturnas",
+      "descripcion": "Recorrido nocturno por lugares históricos contando leyendas locales.",
+      "activo": true,
+      "duracionHoras": 2,
+      "fechaDisponible": ["2025-06-14", "2025-06-21", "2025-07-05"],
+      "precio": {
+        "adulto": 18.0,
+        "niño": 10.0,
+        "moneda": "USD"
+      },
+      "incluye": [
+        "Narración en vivo",
+        "Linterna",
+        "Mapa con historias",
+        "Souvenir temático"
+      ],
+      "idiomasDisponibles": ["español"],
+      "valoraciones": [
+        {
+          "usuario": "nocturno_x",
+          "comentario": "Una experiencia mágica y espeluznante.",
+          "puntuacion": 4.5,
+          "fecha": "2025-04-18"
+        }
+      ],
+      "accesibilidad": {
+        "sillaDeRuedas": true,
+        "traduccionEnLenguaDeSeñas": false,
+        "bañosAdaptados": false
+      }
+    },
+    {
+      "rutaId": "RT-005",
+      "nombre": "Ruta Arqueológica del Valle Sagrado",
+      "descripcion": "Excursión a sitios arqueológicos con guía especializado en historia antigua.",
+      "activo": false,
+      "duracionHoras": 6,
+      "fechaDisponible": ["2025-07-10", "2025-07-17", "2025-07-24"],
+      "precio": {
+        "adulto": 50.0,
+        "niño": 25.0,
+        "moneda": "USD"
+      },
+      "incluye": [
+        "Guía arqueólogo",
+        "Transporte ida y vuelta",
+        "Entrada a ruinas",
+        "Almuerzo campestre"
+      ],
+      "idiomasDisponibles": ["español", "inglés", "alemán"],
+      "valoraciones": [
+        {
+          "usuario": "arqueofan",
+          "comentario": "Increíble riqueza cultural, lo volvería a hacer.",
+          "puntuacion": 4.9,
+          "fecha": "2025-04-02"
+        }
+      ],
+      "accesibilidad": {
+        "sillaDeRuedas": false,
+        "traduccionEnLenguaDeSeñas": false,
+        "bañosAdaptados": false
+      }
+    },
+    {
+      "rutaId": "RT-006",
+      "nombre": "Ruta en Bicicleta por la Costa",
+      "descripcion": "Paseo en bicicleta por caminos costeros con vistas panorámicas.",
+      "activo": true,
+      "duracionHoras": 3,
+      "fechaDisponible": ["2025-06-12", "2025-06-19", "2025-06-26"],
+      "precio": {
+        "adulto": 20.0,
+        "niño": 10.0,
+        "moneda": "USD"
+      },
+      "incluye": [
+        "Alquiler de bicicleta",
+        "Casco y equipo de seguridad",
+        "Guía ciclista",
+        "Parada para fotos"
+      ],
+      "idiomasDisponibles": ["español", "inglés", "portugués"],
+      "valoraciones": [
+        {
+          "usuario": "pedaleo_total",
+          "comentario": "Paisajes hermosos y muy buen ritmo del grupo.",
+          "puntuacion": 4.6,
+          "fecha": "2025-04-25"
+        }
+      ],
+      "accesibilidad": {
+        "sillaDeRuedas": false,
+        "traduccionEnLenguaDeSeñas": true,
+        "bañosAdaptados": true
+      }
+    }
+  ]
+  
+  
