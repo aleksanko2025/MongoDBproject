@@ -1,5 +1,38 @@
 [
     {
+      "rutaId": "RT-001",
+      "nombre": "Ruta de Aventura en la Selva",
+      "descripcion": "Explora la selva tropical en una aventura llena de emoción y desafíos.",
+      "activo": true,
+      "duracionHoras": 8,
+      "fechaDisponible": ["2025-06-15", "2025-06-22", "2025-06-29"],
+      "precio": {
+        "adulto": 75.0,
+        "niño": 40.0,
+        "moneda": "USD"
+      },
+      "incluye": [
+        "Guía especializado en ecoturismo",
+        "Equipo de seguridad",
+        "Almuerzo campestre",
+        "Transporte al punto de inicio"
+      ],
+      "idiomasDisponibles": ["español", "inglés"],
+      "valoraciones": [
+        {
+          "usuario": "aventurero_juan",
+          "comentario": "Una experiencia increíble en la selva, muy bien organizada.",
+          "puntuacion": 4.7,
+          "fecha": "2025-04-10"
+        }
+      ],
+      "accesibilidad": {
+        "sillaDeRuedas": false,
+        "traduccionEnLenguaDeSeñas": false,
+        "bañosAdaptados": true
+      }
+    },
+    {
       "rutaId": "RT-002",
       "nombre": "Ruta Natural por el Bosque Encantado",
       "descripcion": "Exploración guiada por senderos naturales con observación de flora y fauna.",
@@ -163,7 +196,40 @@
         "traduccionEnLenguaDeSeñas": true,
         "bañosAdaptados": true
       }
+    },
+    {
+      "rutaId": "RT-007",
+      "nombre": "Safari Fotográfico en la Sabana",
+      "descripcion": "Safari de día completo para observar la fauna salvaje y capturar las mejores fotos en la sabana.",
+      "activo": true,
+      "duracionHoras": 10,
+      "fechaDisponible": ["2025-06-18", "2025-06-25", "2025-07-02"],
+      "precio": {
+        "adulto": 100.0,
+        "niño": 50.0,
+        "moneda": "USD"
+      },
+      "incluye": [
+        "Guía especializado en fauna",
+        "Transporte 4x4",
+        "Almuerzo tipo picnic",
+        "Equipo fotográfico (opcional)"
+      ],
+      "idiomasDisponibles": ["español", "inglés", "francés"],
+      "valoraciones": [
+        {
+          "usuario": "fotografo_experto",
+          "comentario": "Una experiencia única para los amantes de la fotografía y la naturaleza.",
+          "puntuacion": 5.0,
+          "fecha": "2025-03-28"
+        }
+      ],
+      "accesibilidad": {
+        "sillaDeRuedas": false,
+        "traduccionEnLenguaDeSeñas": false,
+        "bañosAdaptados": false
+      }
     }
-  ]
+]
   
   
