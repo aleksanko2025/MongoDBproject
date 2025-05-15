@@ -169,10 +169,10 @@
       "nombre": "Ruta en Bicicleta por la Costa",
       "descripcion": "Paseo en bicicleta por caminos costeros con vistas panorámicas.",
       "activo": true,
-      "duracionHoras": 3,
+      "duracionHoras": 2,
       "fechaDisponible": ["2025-06-12", "2025-06-19", "2025-06-26"],
       "precio": {
-        "adulto": 20.0,
+        "adulto": 19.0,
         "niño": 10.0,
         "moneda": "USD"
       },
@@ -192,7 +192,7 @@
         }
       ],
       "accesibilidad": {
-        "sillaDeRuedas": false,
+        "sillaDeRuedas": true,
         "traduccionEnLenguaDeSeñas": true,
         "bañosAdaptados": true
       }
