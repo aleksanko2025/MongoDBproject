@@ -20,30 +20,104 @@ def conectar():
 
 def insertar_ruta():
     try:
-        ruta_id = input("RutaID (ej: RT-006): ")
+        ruta_id = input("RutaID (ej: RT-006): ").strip().upper()
         nombre = input("Nombre de la ruta: ")
         descripcion = input("Descripción: ")
-        activo = input("¿Está activa? (True/False): ").strip().lower() == "true"
-        duracion = int(input("Duración en horas (número): "))
 
-        # Lista de fechas (usamos ast.literal_eval para evaluar lista como string)
-        fechas = input("Fechas disponibles (ej: ['2025-06-12', '2025-06-19']): ")
+        #Ruta activa o no
+        activo = False
+        estado = input("¿Está activa? (s/n): ").strip().lower()
+        if estado == "s":
+            activo = True
+        else:
+            activo = False
 
-        # Precio (diccionario con adulto, niño y moneda)
-        precio = input("Precio (ej: {'adulto': 19, 'niño': 10, 'moneda': 'USD'}): ")
+        duracion = int(input("Duración en horas: "))
 
-        # Incluye (lista)
-        incluye = input("¿Qué incluye? (lista, ej: ['Guía', 'Bicicleta']): ")
+        # Insertamos fecha
+        fechas = []
+        print("Introduce fechas disponibles (formato AAAA-MM-DD). Escribe 'fin' para terminar.")
+        bandera1 = False
+        while bandera1 != True:
+            fecha = input("> Fecha: ")
+            if fecha.lower() == "fin":
+                bandera1 = True
+            fechas.append(fecha)
+
+        # Precio
+        print("Introduce los precios:")
+        adulto = float(input("Precio adulto: "))
+        niño = float(input("Precio niño: "))
+        moneda = input("Moneda (ej: USD): ").upper()
+        precio = {"adulto": adulto, "niño": niño, "moneda": moneda}
+
+        # Incluye
+        incluye = []
+        print("¿Qué incluye la ruta? Escribe 'fin' para terminar.")
+        bandera2 = False
+        while bandera2 != True:
+            item = input("> Incluye: ")
+            if item.lower() == "fin":
+                bandera2 = True
+            incluye.append(item)
 
         # Idiomas disponibles
-        idiomas = input("Idiomas disponibles (ej: ['español', 'inglés']): ")
+        idiomas = []
+        print("Introduce idiomas disponibles. Escribe 'fin' para terminar.")
+        bandera3 = False
+        while bandera3 != True:
+            idioma = input("> Idioma: ")
+            if idioma.lower() == "fin":
+                bandera3 = True
+            idiomas.append(idioma)
 
-        # Valoraciones (puede ser lista con un solo dict)
-        valoraciones = input("Valoraciones (ej: [{'usuario': 'juan', 'comentario': 'Muy buena', 'puntuacion': 4.5, 'fecha': '2025-04-25'}]): ")
+        # Valoraciones
+        valoraciones = []
+        print("Introduce una o más valoraciones. Escribe 'fin' como usuario para terminar.")
 
-        # Accesibilidad (diccionario)
-        accesibilidad = input("Accesibilidad (ej: {'sillaDeRuedas': True, 'traduccionEnLenguaDeSeñas': True, 'bañosAdaptados': True}): ")
+        while True:
+            usuario = input("Usuario: ")
+            if usuario.lower() == "fin":
+                break  # Sale del bucle porque poniendo bandera se siguen ejecutando el resto de inputs
+            
+            comentario = input("Comentario: ")
+            puntuacion = float(input("Puntuación (0-5): "))
+            fecha_val = input("Fecha (AAAA-MM-DD): ")
 
+            valoraciones.append({
+                "usuario": usuario,
+                "comentario": comentario,
+                "puntuacion": puntuacion,
+                "fecha": fecha_val
+            })
+
+        # Accesibilidad
+        print("¿Accesibilidad?")
+        silla = False
+        silla_sino = input("¿Silla de ruedas (s/n)? ").strip().lower()
+        if silla_sino == "s":
+            activo = True
+        else:
+            activo = False
+        señas = False
+        señas_sino = input("¿Traducción en lengua de señas (s/n)? ").strip().lower() 
+        if señas_sino == "s":
+            activo = True
+        else:
+            activo = False
+        baños = False
+        baños_sino = input("¿Baños adaptados (s/n)? ").strip().lower() 
+        if baños_sino == "s":
+            activo = True
+        else:
+            activo = False
+        accesibilidad = {
+            "sillaDeRuedas": silla,
+            "traduccionEnLenguaDeSeñas": señas,
+            "bañosAdaptados": baños
+        }
+
+        # Insertando
         nuevo_doc = {
             "rutaId": ruta_id,
             "nombre": nombre,
@@ -57,16 +131,31 @@ def insertar_ruta():
             "valoraciones": valoraciones,
             "accesibilidad": accesibilidad
         }
-        
+
         coleccion.insert_one(nuevo_doc)
-        print("Documento insertado con éxito.")
+        print("\n Documento insertado con éxito.")
+
     except Exception as e:
-        print("Error al insertar la ruta:", e)
+        print(" Error al insertar la ruta:", e)
+
+
+def mostrar_rutas():
+    try:
+        consulta = coleccion.find({}, {"_id": 0, "rutaId": 1, "nombre": 1})
+
+        print("\n--- Lista de Rutas ---")
+        for doc in consulta:
+            ruta_id = doc.get("rutaId", "Sin ID") #Si hace bien el get devuelve rutaId y si no lo encuentra pone Sin ID
+            nombre = doc.get("nombre", "Sin nombre")
+            print(f"RutaID: {ruta_id} | Nombre: {nombre}")
+
+    except Exception as e:
+        print("No se ha podido realizar la consulta:", e)
 
 
 
 def borrar():
-    id = input("Indique rutaID para eliminar (ej: RT-001) --> ")
+    id = input("Indique rutaID para actualizar su estado (ej: RT-001) --> ").strip().upper()
 
     try:
         eliminar = coleccion.delete_one({"rutaId": id}) #Consulta
@@ -81,22 +170,28 @@ def borrar():
 
 
 def actualizar():
-    id = input("Indique rutaID para actualziar su estado (ej: RT-001) --> ")
-    estado = input("Indique true/false si quire activar o desactivar la ruta --> ")
+    id = input("Indique rutaID para actualizar su estado (ej: RT-001) --> ").strip().upper()
+    estado = input("Indique true/false si quiere activar o desactivar la ruta --> ")
+    
+    if estado not in ["true", "false"]:
+        print("Entrada no válida. Debe ingresar 'true' o 'false'.")
+        return
 
     try:
-        actualizar = coleccion.update_one({"rutaId": {id}}, {"$set": {"activo": estado}})
-        if actualizar:
+        resultado = coleccion.update_one({"rutaId": id}, {"$set": {"activo": estado}})
+        
+        if resultado.modified_count > 0:
             print(f"¡La ruta {id} se ha actualizado con éxito!")
         else:
-            print("No se encontró ruta con ese ID o el tipo de estado indicado no existe")
+            print("No se encontró la ruta o el valor ya era el mismo.")
     
     except Exception as e:
-        print("Error al actualziar: ", e)
+        print("Error al actualizar:", e)
+
 
 def buscar_por_id():
 
-    id = input("Indique rutaID para buscar (ej: RT-001) --> ")
+    id = input("Indique rutaID para actualizar su estado (ej: RT-001) --> ").strip().upper()
 
     try:
         resultado = coleccion.find_one({"rutaId": id}) #Consulta
@@ -132,6 +227,24 @@ def idiomas_disponibles():
     except Exception as e:
         print("Error al hacer la búsqueda:", e)
 
+def ruta_esta_activa():
+    id = input("Indique rutaID para actualizar su estado (ej: RT-001) --> ").strip().upper()
+
+    try:
+        resultado = coleccion.find_one({"rutaId": id}, {"_id": 0, "rutaId": 1, "nombre": 1, "activo": 1})
+
+        if resultado:
+            if resultado.get("activo", False):
+                print(f"La ruta '{resultado['nombre']}' (ID: {resultado['rutaId']}) está activa.")
+            else:
+                print(f"La ruta '{resultado['nombre']}' (ID: {resultado['rutaId']}) no está activa.")
+        else:
+            print("No se encontró ninguna ruta con ese ID.")
+
+    except Exception as e:
+        print("Error al consultar el estado de la ruta:", e)
+
+
 def rutas_accesibles_silla_ruedas():
     try:
         resultados = coleccion.find(
@@ -161,12 +274,14 @@ def menu():
     while bandera != True:
         print("\n--- MENÚ PRINCIPAL ---")
         print("1. Insertar nueva ruta")
-        print("2. Buscar ruta por ID")
-        print("3. Buscar rutas por idioma disponible")
-        print("4. Mostrar rutas accesibles con silla de ruedas")
-        print("5. Actualizar estado de una ruta (activo/inactivo)")
-        print("6. Eliminar una ruta por ID")
-        print("7. Salir")
+        print("2. Mostrar el nombre de todas las rutas")
+        print("3. Buscar ruta por ID")
+        print("4. Buscar rutas por idioma disponible")
+        print("5. Mostrar rutas accesibles con silla de ruedas")
+        print("6. Disponibilidad de la ruta")
+        print("7. Actualizar estado de una ruta (activo/inactivo)")
+        print("8. Eliminar una ruta por ID")
+        print("9. Salir")
 
         opcion = input("Seleccione una opción (1-7): ").strip()
 
@@ -174,22 +289,28 @@ def menu():
             insertar_ruta()
             input("Presiones 'Enter' para continuar.")
         elif opcion == "2":
-            buscar_por_id()
+            mostrar_rutas()
             input("Presiones 'Enter' para continuar.")
         elif opcion == "3":
-            idiomas_disponibles()
+            buscar_por_id()
             input("Presiones 'Enter' para continuar.")
         elif opcion == "4":
-            rutas_accesibles_silla_ruedas()
+            idiomas_disponibles()
             input("Presiones 'Enter' para continuar.")
         elif opcion == "5":
-            actualizar()
+            rutas_accesibles_silla_ruedas()
             input("Presiones 'Enter' para continuar.")
         elif opcion == "6":
-            borrar()
+            ruta_esta_activa()
+            input("Presiones 'Enter' para continuar.")
         elif opcion == "7":
+            actualizar()
+            input("Presiones 'Enter' para continuar.")
+        elif opcion == "8":
+            borrar()
+            input("Presiones 'Enter' para continuar.")
+        elif opcion == "9":
             bandera = True
             print("Saliendo del programa...")
-            break
         else:
             print("Opción no válida. Intente de nuevo.")
