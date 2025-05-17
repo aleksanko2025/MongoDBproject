@@ -170,10 +170,14 @@ def borrar():
 
 
 def actualizar():
-    id = input("Indique rutaID para actualizar su estado (ej: RT-001) --> ").strip().upper()
-    estado = input("Indique true/false si quiere activar o desactivar la ruta --> ")
+    id = input("Indique rutaId para actualizar su estado (ej: RT-001) --> ").strip().upper()
+    estado_input = input("Indique True/False si quiere activar o desactivar la ruta --> ").strip().lower()
     
-    if estado not in ["true", "false"]:
+    if estado_input == "true":
+        estado = True
+    elif estado_input == "false":
+        estado = False
+    else:
         print("Entrada no válida. Debe ingresar 'true' o 'false'.")
         return
 
@@ -235,9 +239,9 @@ def ruta_esta_activa():
 
         if resultado:
             if resultado.get("activo", False):
-                print(f"La ruta '{resultado['nombre']}' (ID: {resultado['rutaId']}) está activa.")
+                print(f"La ruta '{resultado['nombre']}' (ID: {resultado['rutaId']}) está ACTIVA.")
             else:
-                print(f"La ruta '{resultado['nombre']}' (ID: {resultado['rutaId']}) no está activa.")
+                print(f"La ruta '{resultado['nombre']}' (ID: {resultado['rutaId']}) NO está activa .")
         else:
             print("No se encontró ninguna ruta con ese ID.")
 
